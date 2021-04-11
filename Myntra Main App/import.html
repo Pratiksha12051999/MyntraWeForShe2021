@@ -1,0 +1,85 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+-->
+<!doctype html>
+<html lang="zxx">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>SpryStore E-commerce Category Bootstrap Responsive Website Template | Home :: W3layouts</title>
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="assets/css/style-starter.css">
+  <!-- Template CSS -->
+  <link href="//fonts.googleapis.com/css?family=Oswald:300,400,500,600&display=swap" rel="stylesheet">
+  <link href="//fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,900&display=swap" rel="stylesheet">
+  <!-- Template CSS -->
+
+</head>
+<body>
+    <div class="container-fluid">
+        <section class="w3l-grids-hny-2">
+            <div class="form-group">
+                <label for="exampleInputEmail1">User ID</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter User ID">
+            </div>
+            <button id="import" class="btn btn-primary">Submit</button>
+        </section>
+    </div>
+    </div>
+    <div class="row" id="classCards">
+          
+    </div>
+</body>
+
+  </html>
+  <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+<script src="assets/js/jquery-3.3.1.min.js"></script>
+<script src="assets/js/jquery-2.1.4.min.js"></script>
+<!--/login-->
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-auth.js"></script>
+  
+  <script>
+    var firebaseConfig = {
+		apiKey: "AIzaSyDbLxkV4HDlTjBnPCbSF4DpOHA2lNec6Lk",
+		authDomain: "myntra-a43e6.firebaseapp.com",
+		projectId: "myntra-a43e6",
+		databaseURL: "https://myntra-a43e6-default-rtdb.firebaseio.com/",
+		storageBucket: "myntra-a43e6.appspot.com",
+		messagingSenderId: "437659647152",
+		appId: "1:437659647152:web:346b00d67353b265c48f75",
+		measurementId: "G-EC2D2QE4S6"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    var database = firebase.database();
+</script>
+
+<script>
+		$(document).ready(function () {
+            $('#import').click(function(){
+                var value = $('#exampleInputEmail1').val();
+                firebaseappend(value)
+            })
+		});
+
+        function firebaseappend(value){
+            firebase.database().ref('User/'+value).on('value',function(snap){
+                $("#classCards").empty();
+                snap.forEach(function(childSnapshot) {
+                    var key_card = childSnapshot.key;
+                    $("#classCards").append('<div class="card col-sm-12" style="margin:5px;"><div class="card-header">'+ childSnapshot.key +'</div><ul class="list-group list-group-flush" id="'+childSnapshot.key+'"></ul></div><br>');
+                });
+            });
+        }
+  </script>
+<!-- disable body scroll which navbar is in active -->
+<script src="assets/js/bootstrap.min.js"></script>
+
